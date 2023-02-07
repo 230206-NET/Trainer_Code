@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowControl", "FlowControl\FlowControl.csproj", "{7B9D1C31-A166-46DD-8E80-F2AE52AFCAFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowControl.Tests", "FlowControl.Tests\FlowControl.Tests.csproj", "{E550070A-8F81-4FF1-B73E-97DDE8CF1478}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B9D1C31-A166-46DD-8E80-F2AE52AFCAFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B9D1C31-A166-46DD-8E80-F2AE52AFCAFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B9D1C31-A166-46DD-8E80-F2AE52AFCAFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B9D1C31-A166-46DD-8E80-F2AE52AFCAFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E550070A-8F81-4FF1-B73E-97DDE8CF1478}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E550070A-8F81-4FF1-B73E-97DDE8CF1478}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E550070A-8F81-4FF1-B73E-97DDE8CF1478}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E550070A-8F81-4FF1-B73E-97DDE8CF1478}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
