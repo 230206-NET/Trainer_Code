@@ -74,15 +74,14 @@ for(int i = 1; i <= parsedInput; i++) {
     // Using Modulus Operator to tell if i is a multiple of 3
     // a number is a multiple of 3 if the number divided by 3 has remainder of 0
     // If/ElseIf/Else block also flows top to bottom
-    
-    if(i % 3 == 0) {
-        Console.WriteLine("Fizz");
+    if(i % 3 == 0 && i % 5 == 0) {
+        Console.WriteLine("FizzBuzz");
     }
     else if(i % 5 == 0) {
         Console.WriteLine("Buzz");
     }
-    else if(i % 3 == 0 && i % 5 == 0) {
-        Console.WriteLine("FizzBuzz");
+    else if(i % 3 == 0) {
+        Console.WriteLine("Fizz");
     }
     else {
         Console.WriteLine(i);
