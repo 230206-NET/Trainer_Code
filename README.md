@@ -9,5 +9,3 @@ Feel free to look around, but remember, you don't get anything for free. Just co
 
 Good Luck!  
 Richard
-
-This change is only on the Dev branch!
