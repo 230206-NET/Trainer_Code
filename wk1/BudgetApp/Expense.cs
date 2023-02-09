@@ -6,14 +6,43 @@
 // 4 simple ones are: Public, private, internal, and protected
 // Public: Anyone and every one have access to public resources
 // Private: it is available to the owner of that particular property/method/etc. Often used in class members (things that belong in a class) when you want to keep things to yourself
-class Expense {
+// Internal: Everyone in my PROJECT has access to this
+// Protected: Me and my Children (the inherited classes) have access to this
+internal class Expense {
+    // Constructor: The default one goes away as soon as we provide our own. Add the your custom empty constructor back if you want it.
+    
+    // What we are doing here, having multiple different versions of the same method, is called method overloading
+    // Overloading happens within the same class
+    // You have to keep the method name same
+    // but your parameter must be different
+    // Return type can also be different
+    public Expense() {
+        // This is where you can do a lot of initial set up behavior for each object
+        this.Description = "sample description";
+        this.Amount = 0.0m;
+    }
+
+// Constructor chaining
+    public Expense(string descriptionToSet) : this() {
+        this.Description = descriptionToSet;
+    }
+
+    public Expense(decimal amountToSet) : this() {
+        this.Amount = amountToSet;
+    }
+
+// A way to provide default values;
+    public Expense(string descriptionToSet = "", decimal amountToSet = 0.0m) {
+        this.Description = descriptionToSet;
+        this.Amount = amountToSet;
+    }
+
     // What did you spend your money for
     // These are fields
     // Field are the state/characteristic of the object we're trying to describe 
     // Having a public field is considered a bad practice
     // public string description;
-
-    private string description;
+    private string description = "";
     // // Instead, we have getters and setters so we can control how we dispense and manipulate the data
     // public string GetDescription() {
     //     return this.description;
@@ -33,9 +62,9 @@ class Expense {
 
     // Automatic Properties, or just "properties"
     // Which is a bundle of a field, getter/setter
-    // this is just a syntactic short cut
-    // but this what we all use
-    public string Description { 
+    // this is just a syntactic shortcut
+    // but this what we all use in C#
+    internal string Description { 
         get {
             return this.description;
         } 
@@ -50,11 +79,11 @@ class Expense {
 
 
     // if you don't need any validation, but just need getters and setters because it's a good practice, this is something you'll see often
-    public string Prop { get; set; }
+    internal string Prop { get; set; }
 
     // How much did you spend?
     // we have multiple options here: double float int decimal
-    private decimal amount;
+    public decimal Amount { get; set; } = 0.0m;
 
     // Write Getter/Setter using Property syntax for the amount field here 
     // This is a method
@@ -67,7 +96,22 @@ class Expense {
     // usually has things like access modifier, the return type, method name, and parameters
     private void IncrementInterest(int interestRate) {
         // The this keyword refers to a particular instance and not the class itself 
-        this.amount *= (1 + interestRate);
+        this.Amount *= (1 + interestRate);
+    }
+
+    public string DescriptionDisplay() {
+        return $"Description: {this.Description} \nAmount:{this.Amount}";
+    }
+
+// When we want to customize the behavior of the method we inherit from our parent classes, we can override them.
+// You can only override following methods:
+// The ones you inherit from your parent AND
+// are marked with "virtual" non-access modifier
+// With overriding, you cannot modify the method signature
+// But you override the method body to provide your own implementation
+    public override string ToString()
+    {
+        return $"Description: {this.Description} \nAmount:{this.Amount}";
     }
 }
 
