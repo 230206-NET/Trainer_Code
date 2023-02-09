@@ -56,7 +56,7 @@ class Expense {
     // we have multiple options here: double float int decimal
     private decimal amount;
 
-
+    // Write Getter/Setter using Property syntax for the amount field here 
     // This is a method
     // Method describes a behavior that is associated with the class
     private void exampleMethod() {
