@@ -20,7 +20,7 @@ It's comprised of the following
 - Frameworks (Mono, Xamarin, .NET (core), ASP.NET core, UWP, etc)
 - Development tools such as visual studio and vscode
 
-- .NET 6 is the most current .NET implementation (this is what we'll be using)
+- .NET 7 is the most current .NET implementation (this is what we'll be using)
     - Open source, cross platform (doesn't discriminate against OS's, can run on Windows, Mac, Linux)
 - .NET Framework is the first .NET implementation (this is NOT what we're using)
     - This is platform specific (windows) and proprietary framework
@@ -48,3 +48,5 @@ It's comprised of the following
     - to add project dependency to another project
 - dotnet build
     - just compiles the project
+- dotnet publish
+    - generates deployable artifacts

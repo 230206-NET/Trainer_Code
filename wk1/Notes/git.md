@@ -1,6 +1,6 @@
 # git
 
-Git is a version control system, to be more precise, it's a distributed version control system, meaning everybody as their own copy of the repository
+Git is a version control system, to be more precise, it's a distributed version control system, meaning everybody has their own copy of the repository
 
 Basically, git is a way for software devs to back up our work and collaborate with others
 
