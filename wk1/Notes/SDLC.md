@@ -35,7 +35,7 @@ In a sprint, we plan the work that seems achievable in upcoming sprint (2-3 week
     - "How much work seems doable in next 2-3 weeks?"
     - "Which feature/bug takes the most priority?"
     - "Any carryover from the last sprint we need to take account of?"
-    - The tasks/items are usually expressed in user stories, and the team will assign story points (usually fib number) to signify the weight of the item (aka how much time/resource is going to take to complete that item)
+    - The tasks/items are usually expressed in _user stories_, and the team will assign _story points_ (usually fib number) to signify the weight of the item (aka how much time/resource is going to take to complete that item)
 
 - Daily Standup/Scrum Meeting: During the implementation phase of sprint
     - This is an opportunity to catch up to what everyone else is doing in your team.
@@ -48,7 +48,6 @@ In a sprint, we plan the work that seems achievable in upcoming sprint (2-3 week
 - Burndown Chart
     - Using the points assigned to each "user stories"/items we can track how our sprint is going. Comparing the actual remaining points to the projected progress, the team can make adjustments to the sprint.
     - Sprint velocity refers to how quickly the the items are getting done compared to the time we have
-    
 
 - Kanban Board
     -Kanban board is to track each item's movement through different stages.
