@@ -71,7 +71,7 @@ internal class Expense {
         set {
             // when the user of this class sets Description to a certain string, that string  value is passed as the name "value"
             if(string.IsNullOrWhiteSpace(value)) {
-            throw new ArgumentNullException("input value must not be empty");
+                throw new ArgumentNullException("input value must not be empty");
             }
             this.description = value;
         } 
