@@ -9,7 +9,7 @@ namespace BudgetApp;
 // Private: it is available to the owner of that particular property/method/etc. Often used in class members (things that belong in a class) when you want to keep things to yourself
 // Internal: Everyone in my PROJECT has access to this
 // Protected: Me and my Children (the inherited classes) have access to this
-internal class Expense {
+class Expense {
     // Constructor: The default one goes away as soon as we provide our own. Add the your custom empty constructor back if you want it.
     
     // What we are doing here, having multiple different versions of the same method, is called method overloading

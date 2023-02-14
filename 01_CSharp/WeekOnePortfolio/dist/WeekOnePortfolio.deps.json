@@ -1,0 +1,58 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "WeekOnePortfolio/1.0.0": {
+        "dependencies": {
+          "BudgetApp": "1.0.0",
+          "FizzBuzz": "1.0.0",
+          "firstDotnet": "1.0.0"
+        },
+        "runtime": {
+          "WeekOnePortfolio.dll": {}
+        }
+      },
+      "BudgetApp/1.0.0": {
+        "runtime": {
+          "BudgetApp.dll": {}
+        }
+      },
+      "firstDotnet/1.0.0": {
+        "runtime": {
+          "firstDotnet.dll": {}
+        }
+      },
+      "FizzBuzz/1.0.0": {
+        "runtime": {
+          "FizzBuzz.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "WeekOnePortfolio/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BudgetApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "firstDotnet/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FizzBuzz/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
