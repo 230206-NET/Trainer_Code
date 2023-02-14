@@ -8,7 +8,6 @@
 public class WorkoutSession
 {
     public DateTime WorkoutDate { get; set; } = DateTime.Now;
-
     private string _workoutName = DateTime.Now.ToString();
     public string WorkoutName { 
         get
