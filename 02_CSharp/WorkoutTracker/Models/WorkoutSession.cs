@@ -8,7 +8,7 @@
 public class WorkoutSession
 {
     public DateTime WorkoutDate { get; set; } = DateTime.Now;
-    private string _workoutName = DateTime.Now.ToString();
+    private string _workoutName = WorkoutDate.ToString();
     public string WorkoutName { 
         get
         {
@@ -20,7 +20,7 @@ public class WorkoutSession
             {
                 _workoutName = value;
             }
-        } 
+        }
     }
     public List<Exercise> WorkoutExercises { get; set; }
 }
