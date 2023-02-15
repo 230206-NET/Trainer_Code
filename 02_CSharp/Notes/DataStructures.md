@@ -49,7 +49,6 @@ O(n!)
         - Inserting: O(n)
         - Deleting from the front or middle: O(n)
         - Sequential Searching: O(n)
-    - generally good for unsorted data
 
 ### List 
     - Basically automatic resizing array
@@ -91,7 +90,7 @@ O(n!)
         - Size
         - Peek (to look at the next elem without removing)
     - use cases: 
-        - Finding symmetrical parenthesis
+        - Finding symmetrical parentheses
         - can use where you are not concerned about the order of the data set, but the order they've been added to the ds
         - when the relation between data is more important than the data itself
 
@@ -114,7 +113,7 @@ O(n!)
 
 ### Dictionary (HashMap in java)
     - Is an Unordered collection of Key, Value Pair
-    - Keys must be unique, but values can be duplicate
+    - Keys must be unique, but values can be duplicates
     - Getting the value for a known key is O(1) operation
     - We use this often for Lookup Table
 
@@ -154,7 +153,7 @@ O(n!)
     These exist, and you should know they exist, but the recommendation is to stick with generic data structures
 
 
-## Relevant LeetCode Problems
+## Relevant LeetCode Problems (just a sampler, feel free to look for more if you want)
 - [Two Sum](https://leetcode.com/problems/two-sum/)
 - [Contains Duplicate](https://leetcode.com/problems/contains-duplicate)
 - [First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string)

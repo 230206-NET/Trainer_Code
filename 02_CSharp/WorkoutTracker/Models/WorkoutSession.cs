@@ -1,4 +1,7 @@
-﻿namespace Models;
+﻿using Models.CustomException;
+using System.Text;
+
+namespace Models;
 
 /* MVP:
 - As a user, I should be able to create new workout sessions
@@ -7,8 +10,11 @@
 */
 public class WorkoutSession
 {
+    public WorkoutSession() {
+        WorkoutExercises = new List<Exercise>();
+    }
     public DateTime WorkoutDate { get; set; } = DateTime.Now;
-    private string _workoutName = WorkoutDate.ToString();
+    private string _workoutName = DateTime.Now.ToString();
     public string WorkoutName { 
         get
         {
@@ -16,6 +22,12 @@ public class WorkoutSession
         }
         set 
         {
+            if(value.Length >= 100)
+            {
+                // The name is longer than 100 characters
+                // Throw some exception
+                throw new ArgumentLengthException("Name must be less than 100 characters");
+            }
             if(!string.IsNullOrWhiteSpace(value))
             {
                 _workoutName = value;
@@ -23,6 +35,20 @@ public class WorkoutSession
         }
     }
     public List<Exercise> WorkoutExercises { get; set; }
+
+    public override string ToString()
+    {
+        StringBuilder sb = new();
+        
+        sb.Append($"Name: {this.WorkoutName}\nDate: {this.WorkoutDate}");
+
+        foreach(Exercise e in WorkoutExercises) {
+            sb.Append("\n");
+            sb.Append(e.ToString());
+        }
+
+        return sb.ToString();
+    }
 }
 
 
