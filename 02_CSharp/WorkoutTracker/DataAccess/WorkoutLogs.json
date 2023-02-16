@@ -1,1 +1,4 @@
-[{"WorkoutDate":"2023-02-15T15:20:51.2087181-05:00","WorkoutName":"hamilton mtn hike","WorkoutExercises":[{"Name":"8 mi 2300ft elevation summit hike","Notes":"see above"}]}]
+[{"WorkoutDate":"2023-02-15T15:20:51.2087181-05:00","WorkoutName":"hamilton mtn hike","WorkoutExercises":[{"Name":"8 mi 2300ft elevation summit hike","Notes":"see above"}]},
+{"WorkoutDate":"2023-02-15T15:20:51.2087181-05:00","WorkoutName":"dog mtn hike","WorkoutExercises":[{"Name":"dog mtn hike","Notes":"was hard but pretty"}]},
+{"WorkoutDate":"2023-02-15T15:20:51.2087181-05:00","WorkoutName":"strength training","WorkoutExercises":[{"Name":"squats","Notes":"see above"}, {"Name": "deadlifts", "Notes": ""}]}
+]

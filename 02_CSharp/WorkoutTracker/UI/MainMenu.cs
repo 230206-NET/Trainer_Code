@@ -1,5 +1,5 @@
 using DataAccess;
-
+using Services;
 namespace UI;
 
 public class MainMenu
@@ -15,7 +15,7 @@ public class MainMenu
             Console.WriteLine("Workout Tracker:");
             Console.WriteLine("What do you want to do?");
             Console.WriteLine("[1] Create a new workout");
-            Console.WriteLine("[2] Modify an existing workout");
+            Console.WriteLine("[2] Search Workouts by Exercise");
             Console.WriteLine("[3] View all workouts");
             Console.WriteLine("[x] Exit");
 
@@ -27,7 +27,7 @@ public class MainMenu
                 break;
                 
                 case "2":
-                    // ToDo: Modify Existing Workout
+                    SearchWorkoutsByExercise();
                 break;
                 case "3":
                     List<WorkoutSession> sessions = _service.GetAllWorkouts();
@@ -44,6 +44,17 @@ public class MainMenu
                     Console.WriteLine("I don't understand your input");
                 break;
             }
+        }
+    }
+
+    private void SearchWorkoutsByExercise() {
+        Console.WriteLine("Which exercise would you like to serach for?");
+        string input = Console.ReadLine();
+
+        List<WorkoutSession> sessions = _service.SearchWorkoutsByExercise(input);
+
+        foreach(WorkoutSession s in sessions) {
+            Console.WriteLine(s);
         }
     }
     private void CreateNewWorkout() {
