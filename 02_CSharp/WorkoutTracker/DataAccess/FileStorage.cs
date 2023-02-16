@@ -12,11 +12,11 @@ public class FileStorage
     private const string _filePath = "../DataAccess/WorkoutLogs.json";
     public FileStorage() {
         // I want to write my data in JSON format
-        // The process of converting data to string/bit for transportation or persistence is called Serialization
+        // The process of converting object to string/bit for transportation or persistence is called Serialization
         // The process of taking the string/bit/etc and translating back into Objects is called Deserialization
 
         // When we initialize this class, let's make sure the file we want to modify exists, and if not, let's create it.
-        // File is an example of unmanaged resource, aka CLR (common language runtime does not garbage collect it for you. You have to manually close/dispose it)
+        // File is an example of unmanaged resource, aka CLR (common language runtime) does not garbage collect it for you. You have to manually close/dispose it.
         bool fileExists = File.Exists(_filePath);
 
         if(!fileExists) {
@@ -29,13 +29,14 @@ public class FileStorage
         // Open the file, read the content, close the file
         string fileContent = File.ReadAllText(_filePath);
 
-        // The read string, and deserialize it back to List of workout sessions
+        // take the read string, and deserialize it back to List of workout sessions
         return JsonSerializer.Deserialize<List<WorkoutSession>>(fileContent);
     }
 
     public void CreateNewSession(WorkoutSession sessionToCreate) {
         // Reading from an existing file and deserializing it as list of workout
         List<WorkoutSession> sessions = GetAllWorkouts();
+
         // Adding new workout session
         sessions.Add(sessionToCreate);
 
