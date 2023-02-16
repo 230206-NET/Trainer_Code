@@ -94,6 +94,7 @@
         - the parent method must have keyword "virtual"(or abstract which is implicitly virtual) and the overriding method must have keyword "override"
 
 ### Encapsulation
+
     - "Data Hiding": Restricting full access to data
         - Getters and Setters
         - [Access modifiers](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers) (Public, Private, Protected, Internal, Private Protected, Protected Internal)
@@ -113,3 +114,21 @@
         - "abstraction is the black box. encapsulation is the workings of the black box"
         - "Abstraction and encapsulation are complementary concepts: abstraction focuses on the observable behavior of an object...encapsulation focuses on the implementation that gives rise to this behavior“
             - Object-Oriented Analysis and Design, Grady Booch
+
+
+## Non-Access Modifier
+- Const : John
+- Readonly : Artur
+- Abstract : Patrick
+- Virtual : Engels
+- Override : Sonya
+- New : Samuel
+- Partial : Raj
+- Sealed : Jacob
+- Static : Melanie
+- Async : Edwin
+- Unsafe : Nick 
+- Extern : Meet
+- Volatile : John S
+- Event : Eric
+- In / Out : Georges
