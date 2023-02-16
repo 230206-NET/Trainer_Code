@@ -4,7 +4,11 @@ namespace UI;
 
 public class MainMenu
 {
-    private List<WorkoutSession> workouts = new();
+    // This is just dep injection
+    private readonly WorkoutService _service;
+    public MainMenu(WorkoutService service) {
+        _service = service;
+    }
     public void Start() {
 
         while(true) {
@@ -26,7 +30,7 @@ public class MainMenu
                     // ToDo: Modify Existing Workout
                 break;
                 case "3":
-                    List<WorkoutSession> sessions = new FileStorage().GetAllWorkouts();
+                    List<WorkoutSession> sessions = _service.GetAllWorkouts();
                     foreach(WorkoutSession s in sessions) {
                         Console.WriteLine(s);
                     }
@@ -88,7 +92,7 @@ public class MainMenu
             if(more.ToLower()[0] == 'n') break;
         }
 
-        new FileStorage().CreateNewSession(session);
+        _service.CreateNewSession(session);
         Console.WriteLine(session);
     }
 }

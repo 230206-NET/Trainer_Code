@@ -7,7 +7,7 @@ namespace DataAccess;
 // - Console I/O
 // - Any complex application logic
 
-public class FileStorage
+public class FileStorage : IRepository
 {
     private const string _filePath = "../DataAccess/WorkoutLogs.json";
     public FileStorage() {
