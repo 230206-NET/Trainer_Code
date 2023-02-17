@@ -1,5 +1,7 @@
 ﻿using System.Text.Json;
 using Models;
+using Serilog;
+
 namespace DataAccess;
 // In this project, all we'll do is getting and persisting data
 // Code in this project will not be doing any of the following
@@ -17,6 +19,7 @@ public class FileStorage : IRepository
 
         // When we initialize this class, let's make sure the file we want to modify exists, and if not, let's create it.
         // File is an example of unmanaged resource, aka CLR (common language runtime) does not garbage collect it for you. You have to manually close/dispose it.
+        Log.Information("Instantiating File Storage Class");
         bool fileExists = File.Exists(_filePath);
 
         if(!fileExists) {
@@ -26,6 +29,7 @@ public class FileStorage : IRepository
     }
 
     public List<WorkoutSession> GetAllWorkouts() {
+        Log.Information("File Storage: Retrieving all workout sessions");
         // Open the file, read the content, close the file
         string fileContent = File.ReadAllText(_filePath);
 
@@ -34,6 +38,8 @@ public class FileStorage : IRepository
     }
 
     public void CreateNewSession(WorkoutSession sessionToCreate) {
+        Log.Information("File Storage: creating a new workout session");
+
         // Reading from an existing file and deserializing it as list of workout
         List<WorkoutSession> sessions = GetAllWorkouts();
 

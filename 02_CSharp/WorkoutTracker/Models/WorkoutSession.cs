@@ -1,6 +1,6 @@
 ﻿using Models.CustomException;
 using System.Text;
-
+using Serilog;
 namespace Models;
 
 /* MVP:
@@ -26,6 +26,7 @@ public class WorkoutSession
             {
                 // The name is longer than 100 characters
                 // Throw some exception
+                Log.Warning("Models: assigning name to new workout session: name length too long");
                 throw new ArgumentLengthException("Name must be less than 100 characters");
             }
             if(!string.IsNullOrWhiteSpace(value))
