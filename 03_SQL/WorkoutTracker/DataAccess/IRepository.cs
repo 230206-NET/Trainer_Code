@@ -11,5 +11,5 @@ public interface IRepository
     /// <summary>
     /// Persists a new workout session to storage
     /// </summary>
-    void CreateNewSession(WorkoutSession sessionToCreate);
+    WorkoutSession CreateNewSession(WorkoutSession sessionToCreate);
 }

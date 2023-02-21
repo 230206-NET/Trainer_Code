@@ -1,5 +1,6 @@
 using DataAccess;
 using Services;
+using Serilog;
 namespace UI;
 
 public class MainMenu
@@ -103,7 +104,14 @@ public class MainMenu
             if(more.ToLower()[0] == 'n') break;
         }
 
-        _service.CreateNewSession(session);
-        Console.WriteLine(session);
+        try
+        {
+            _service.CreateNewSession(session);
+            Console.WriteLine(session);
+        }
+        catch (SqlException)
+        {
+            Console.WriteLine("Something went wrong with db, please try again");
+        }
     }
 }

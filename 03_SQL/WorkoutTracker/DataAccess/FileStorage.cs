@@ -37,7 +37,7 @@ public class FileStorage : IRepository
         return JsonSerializer.Deserialize<List<WorkoutSession>>(fileContent);
     }
 
-    public void CreateNewSession(WorkoutSession sessionToCreate) {
+    public WorkoutSession CreateNewSession(WorkoutSession sessionToCreate) {
         Log.Information("File Storage: creating a new workout session");
 
         // Reading from an existing file and deserializing it as list of workout
@@ -49,5 +49,6 @@ public class FileStorage : IRepository
         // Serializing the list as string and writing it back to the file
         string content = JsonSerializer.Serialize(sessions);
         File.WriteAllText(_filePath, content);
+        return sessionToCreate;
     }
 }

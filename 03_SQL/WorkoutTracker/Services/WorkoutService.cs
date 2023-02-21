@@ -34,6 +34,13 @@ public class WorkoutService
     }
 
     public void CreateNewSession(WorkoutSession sessionToCreate) {
-        _repo.CreateNewSession(sessionToCreate);
+        try
+        {
+            _repo.CreateNewSession(sessionToCreate);
+        }
+        catch (SqlException)
+        {
+            throw;
+        }
     }
 }

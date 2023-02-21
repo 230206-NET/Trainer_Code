@@ -1,6 +1,6 @@
 using Models;
 using System.Data.SqlClient;
-
+using Serilog;
 namespace DataAccess;
 
 // ADO.NET
@@ -82,7 +82,7 @@ public class DBRepository : IRepository
 
         using SqlDataReader reader = cmd.ExecuteReader();
 
-        while(reader.read()) {
+        while(reader.Read()) {
             exercises.Add(new Exercise {
                 Id = reader.GetInt32(0), //(int) reader["Id"]
                 Name = (string) reader["ExerciseName"],
@@ -95,8 +95,45 @@ public class DBRepository : IRepository
     /// <summary>
     /// Persists a new workout session to storage
     /// </summary>
-    public void CreateNewSession(WorkoutSession sessionToCreate)
+    public WorkoutSession CreateNewSession(WorkoutSession sessionToCreate)
     {
-        throw new NotImplementedException();
+        /*
+        basic steps are still the same here
+            1. connect to db
+            2. write your query
+            3. run your query
+            4. hope it works
+        */
+        try 
+        {
+            using SqlConnection conn = new SqlConnection(Secrets.getConnectionString());
+            conn.Open();
+
+            using SqlCommand cmd = new SqlCommand("INSERT INTO WorkoutSessions(WorkoutName, WorkoutDate) OUTPUT INSERTED.Id Values (@wName, @wDate)", conn);
+            cmd.Parameters.AddWithValue("@wName", sessionToCreate.WorkoutName);
+            cmd.Parameters.AddWithValue("@wDate", sessionToCreate.WorkoutDate);
+
+            int createdId = (int) cmd.ExecuteScalar();
+
+            // you might want to do something if rowsAffected == 0;
+            sessionToCreate.Id = createdId;
+
+            foreach(Exercise ex in sessionToCreate.WorkoutExercises)
+            {
+                using SqlCommand ecmd = new SqlCommand("INSERT INTO Exercises(ExerciseName, ExerciseNote) OUTPUT INSERTED.Id Values (@eName, @eNote)", conn);
+
+                ecmd.Parameters.AddWithValue("@eName", ex.Name);
+                ecmd.Parameters.AddWithValue("@eNote", ex.Notes);
+
+                int eId = (int) ecmd.ExecuteScalar();
+                ex.Id = eId;
+            }
+
+            return sessionToCreate;
+        }
+        catch (SqlException ex) {
+            Log.Warn("Caught SQL Exception trying to create new workout {0}", ex);
+            throw ex;
+        }
     }
 }
