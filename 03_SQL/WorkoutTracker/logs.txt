@@ -1,0 +1,6 @@
+2023-02-17 15:09:24.883 -05:00 [INF] Application Starting...
+2023-02-17 15:09:24.931 -05:00 [INF] Instantiating File Storage Class
+2023-02-17 15:09:50.369 -05:00 [INF] File Storage: Retrieving all workout sessions
+2023-02-17 15:10:14.113 -05:00 [INF] File Storage: creating a new workout session
+2023-02-17 15:10:14.114 -05:00 [INF] File Storage: Retrieving all workout sessions
+2023-02-17 15:10:27.829 -05:00 [WRN] Models: assigning name to new workout session: name length too long
