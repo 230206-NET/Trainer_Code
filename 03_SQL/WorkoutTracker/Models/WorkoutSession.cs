@@ -13,6 +13,8 @@ public class WorkoutSession
     public WorkoutSession() {
         WorkoutExercises = new List<Exercise>();
     }
+
+    public int Id { get; set; }
     public DateTime WorkoutDate { get; set; } = DateTime.Now;
     private string _workoutName = DateTime.Now.ToString();
     public string WorkoutName { 

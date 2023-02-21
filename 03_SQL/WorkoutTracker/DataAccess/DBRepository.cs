@@ -1,5 +1,5 @@
 using Models;
-using System.Data;
+using System.Data.SqlClient;
 
 namespace DataAccess;
 
@@ -9,8 +9,8 @@ ADO.NET is a collection of tools and types for accessing databases in uniform fa
 They offer different types to handle different db's but they all inherit from the same supertype, which makes the usage about the same
 */
 // To set up,
-// make sure you have Microsoft.Data.SqlClient package installed on DataAccess project
-// and include System.Data namespace
+// make sure you have System.Data.SqlClient package installed on DataAccess project
+// and include System.Data.SqlClient namespace
 
 /*
 Reading/writing to DB
@@ -23,15 +23,31 @@ Reading/writing to DB
 public class DBRepository : IRepository
 {
 
-    private string _connnectionString = "Server=tcp:workout-tracker.database.windows.net,1433;Initial Catalog=workoutDB;Persist Security Info=False;User ID=workout-admin;Password=P@ssw0rd;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
     /// <summary>
     /// Retrieves all workout sessions
     /// </summary>
     /// <returns>a list of workout sessions</returns>
     public List<WorkoutSession> GetAllWorkouts()
     {
-        throw new NotImplementedException();
+        List<WorkoutSession> allWorkouts = new();
+        // Equivalent to opening Azure Data Studio and filling out the new connection form
+        SqlConnection connection = new SqlConnection(Secrets.getConnectionString()); 
+
+        // Click the "Connect" button
+        connection.Open();
+
+        SqlCommand cmd = new SqlCommand("SELECT * FROM WorkoutSessions", connection);
+        SqlDataReader reader = cmd.ExecuteReader();
+
+        while(reader.Read()) {
+            allWorkouts.Add(new WorkoutSession {
+                Id = (int) reader["Id"],
+                WorkoutDate = (DateTime) reader["WorkoutDate"],
+                WorkoutName = (string) reader["WorkoutName"],
+            });
+        }
+
+        return allWorkouts;
     }
 
     /// <summary>

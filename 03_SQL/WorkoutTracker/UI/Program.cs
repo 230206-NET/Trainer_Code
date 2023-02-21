@@ -21,7 +21,7 @@ try {
     // How to inject dependencies upon instantiation
     // new MainMenu(new WorkoutService(new FileStorage())).Start();
 
-    IRepository repo = new FileStorage();
+    IRepository repo = new DBRepository();
     WorkoutService service = new WorkoutService(repo);
     MainMenu menu = new MainMenu(service);
     menu.Start();
