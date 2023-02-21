@@ -35,14 +35,14 @@ Create Table Exercises (
 );
 
 -- To add a row to table, use INSERT keyword
-INSERT INTO WorkoutSessions(WorkoutDate) Values (getdate());
+INSERT INTO WorkoutSessions(WorkoutName) Values ('Quads workout');
 INSERT INTO Exercises(ExerciseName, ExerciseNote, WorkoutId) Values ('jog', '1mi along the creek', 2);
 -- To retrieve the data use SELECT keyword
 SELECT Id, WorkoutDate, WorkoutName FROM WorkoutSessions;
 
 -- Get all the columns from the following table
-SELECT * FROM WorkoutSessions;
-select * from Exercises;
+SELECT * FROM WorkoutSessions join Exercises;
+select * from Exercises where WorkoutId = 2;
 -- use Delete keyword to get rid of 1 or more specific rows
 DELETE FROM WorkoutSessions WHERE Id = 1;
 
