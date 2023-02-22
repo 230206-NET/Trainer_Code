@@ -41,8 +41,11 @@ INSERT INTO Exercises(ExerciseName, ExerciseNote, WorkoutId) Values ('jog', '1mi
 SELECT Id, WorkoutDate, WorkoutName FROM WorkoutSessions;
 
 -- Get all the columns from the following table
-SELECT * FROM WorkoutSessions join Exercises;
-select * from Exercises where WorkoutId = 2;
+SELECT WorkoutSessions.Id as wId, WorkoutDate, WorkoutName, Exercises.Id as eId, ExerciseName, ExerciseNote FROM Exercises right join WorkoutSessions on WorkoutSessions.Id = Exercises.WorkoutId;
+select * from WorkoutSessions
+select * from Exercises;
+
+INSERT INTO WorkoutSessions(WorkoutName) OUTPUT INSERTED.Id Values ('evening run')
 -- use Delete keyword to get rid of 1 or more specific rows
 DELETE FROM WorkoutSessions WHERE Id = 1;
 
