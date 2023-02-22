@@ -13,7 +13,8 @@ Define following terms in your own words, using any resources.
 - Foreign Key
 - Candidate Key
 - Composite Key
-- Normalization
+- tell me about normalization
+    - 1nf, 2nf, 3nf?
 - Referential Integrity
 - Which keyword do I use to...
     - Create new table
@@ -36,6 +37,3 @@ Define following terms in your own words, using any resources.
 - what is connectionstring
 - tell me about multiplicity and some examples
 - tell me about identity keyword
-- tell me about normalization
-    - 1nf, 2nf, 3nf?
--
