@@ -37,3 +37,44 @@ Define following terms in your own words, using any resources.
 - what is connectionstring
 - tell me about multiplicity and some examples
 - tell me about identity keyword
+
+## 230222 Terms
+- What is ERD?
+- Which Sublanguage is SELECT statement part of?
+
+- Describe what each of the clause does
+    - SELECT
+    - FROM
+    - WHERE
+    - GROUP BY
+    - HAVING
+    - ORDER BY
+
+- how do I only get non-duplicate values?
+
+- How do I limit the result to a certain number?
+
+- Built in Functions
+    - Aggregate functions
+        - What are some examples of aggregate functions?
+    - Scalar functions
+        - some examples of scalar functions?
+
+- Joins
+    - Inner Join
+    - Left join
+    - right join
+    - full join
+    - What other joins did you find?
+
+- Set Operation
+    - Union
+    - Union all
+    - Intersect
+    - Except
+
+- What is the difference between set operation and join?
+
+- Subquery
+    - what is it?
+    - in which clauses can you use subquery?
