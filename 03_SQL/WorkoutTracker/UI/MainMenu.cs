@@ -109,8 +109,8 @@ public class MainMenu
             _service.CreateNewSession(session);
             Console.WriteLine(session);
         }
-        catch (Exception)
-        {
+        catch (Exception ex)
+        {   Log.Warning("{0}", ex);
             Console.WriteLine("Something went wrong with db, please try again");
         }
     }
