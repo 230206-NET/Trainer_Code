@@ -1,4 +1,5 @@
 using Models;
+using System.Data;
 using System.Data.SqlClient;
 using Serilog;
 namespace DataAccess;
@@ -18,6 +19,19 @@ Reading/writing to DB
 2. Assemble/Write the query
 3. Execute it
 4. Process the data or check that it's been successful
+*/
+
+/*
+ADO.NET has two types of retrieving the data:
+
+Connected architecture
+    - We stay connected to the DB the entire time we're working
+    - and utilize classes such as sqlCommand, SqlDatareader, etc.
+
+Disconnected Architecture
+    - Where we get all the data at once
+    - and we can work with them w/o being connected to the db.
+
 */
 
 public class DBRepository : IRepository
@@ -63,35 +77,64 @@ public class DBRepository : IRepository
         return allWorkouts;
     }
 
-
-    public List<Exercise> GetExercisesByWorkoutId(int id) {
-        List<Exercise> exercises = new();
+// Connected Architecture
+    // public List<Exercise> GetExercisesByWorkoutId(int id) {
+    //     List<Exercise> exercises = new();
         
-        // using statements automatically garbage collects the unmanaged resources like these once it goes out of scope
-        // This is DIFFERENT from using Directive which is used at the top of your file to import namespaces
-        using SqlConnection connection = new SqlConnection(Secrets.getConnectionString());
+    //     // using statements automatically garbage collects the unmanaged resources like these once it goes out of scope
+    //     // This is DIFFERENT from using Directive which is used at the top of your file to import namespaces
+    //     using SqlConnection connection = new SqlConnection(Secrets.getConnectionString());
 
-        connection.Open();
+    //     connection.Open();
 
-        // Don't ever concatenate or use string interpolation for sql command, as it is vulnerable to SQL Injection
-        // Instead use parameters
-        using SqlCommand cmd = new SqlCommand("Select * From Exercises Where Id = @id", connection);
+    //     // Don't ever concatenate or use string interpolation for sql command, as it is vulnerable to SQL Injection
+    //     // Instead use parameters
+    //     using SqlCommand cmd = new SqlCommand("Select * From Exercises Where Id = @id", connection);
 
-        // Parameterizing your variables will help protect against SQL injection 
-        cmd.Parameters.AddWithValue("@id", id);
+    //     // Parameterizing your variables will help protect against SQL injection 
+    //     cmd.Parameters.AddWithValue("@id", id);
 
-        using SqlDataReader reader = cmd.ExecuteReader();
+    //     using SqlDataReader reader = cmd.ExecuteReader();
 
-        while(reader.Read()) {
-            exercises.Add(new Exercise {
-                Id = reader.GetInt32(0), //(int) reader["Id"]
-                Name = (string) reader["ExerciseName"],
-                Notes = (string) reader["ExerciseNote"]
-            });
+    //     while(reader.Read()) {
+    //         exercises.Add(new Exercise {
+    //             Id = reader.GetInt32(0), //(int) reader["Id"]
+    //             Name = (string) reader["ExerciseName"],
+    //             Notes = (string) reader["ExerciseNote"]
+    //         });
+    //     }
+
+    //     return exercises;
+    // }
+
+    // Disconnected Architecture
+    public List<Exercise> GetExercisesByWorkoutId(int id) {
+        Log.Information($"Getting Exericses by workout id: {id}");
+    // 1. Create a DataSet to act as a container for my data
+    // 2. Create a Data Adapter and configure it with our connection and initial query
+    // 3. Go find your data in your dataset and translate it accordingly.
+
+        DataSet exercisesSet = new DataSet();
+        List<Exercise> exerciseList = new();
+        SqlDataAdapter exerciseAdapter = new SqlDataAdapter("Select * From Exercises WHERE WorkoutId = @id", Secrets.getConnectionString());
+        exerciseAdapter.SelectCommand.Parameters.AddWithValue("@id", id);
+
+        exerciseAdapter.Fill(exercisesSet, "exerciseTable");
+
+        DataTable? exerciseTable = exercisesSet.Tables["exerciseTable"];
+
+        if(exerciseTable != null) {
+            foreach(DataRow row in exerciseTable.Rows) {
+                exerciseList.Add(new Exercise{
+                    Id = (int) row["Id"],
+                    Name = (string) row["ExerciseName"],
+                    Notes = (string) row["ExerciseNote"]
+                });
+            }
         }
-
-        return exercises;
+        return exerciseList;
     }
+
     /// <summary>
     /// Persists a new workout session to storage
     /// </summary>
@@ -120,10 +163,12 @@ public class DBRepository : IRepository
 
             foreach(Exercise ex in sessionToCreate.WorkoutExercises)
             {
-                using SqlCommand ecmd = new SqlCommand("INSERT INTO Exercises(ExerciseName, ExerciseNote) OUTPUT INSERTED.Id Values (@eName, @eNote)", conn);
+                using SqlCommand ecmd = new SqlCommand("INSERT INTO Exercises(ExerciseName, ExerciseNote, WorkoutId) OUTPUT INSERTED.Id Values (@eName, @eNote, @wId)", conn);
 
                 ecmd.Parameters.AddWithValue("@eName", ex.Name);
                 ecmd.Parameters.AddWithValue("@eNote", ex.Notes);
+                ecmd.Parameters.AddWithValue("@wId", createdId);
+
 
                 int eId = (int) ecmd.ExecuteScalar();
                 ex.Id = eId;
@@ -132,7 +177,7 @@ public class DBRepository : IRepository
             return sessionToCreate;
         }
         catch (SqlException ex) {
-            Log.Warn("Caught SQL Exception trying to create new workout {0}", ex);
+            Log.Warning("Caught SQL Exception trying to create new workout {0}", ex);
             throw ex;
         }
     }

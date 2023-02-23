@@ -22,6 +22,9 @@ try {
     // new MainMenu(new WorkoutService(new FileStorage())).Start();
 
     IRepository repo = new DBRepository();
+
+    new DBRepository().GetExercisesByWorkoutId(1);
+
     WorkoutService service = new WorkoutService(repo);
     MainMenu menu = new MainMenu(service);
     menu.Start();

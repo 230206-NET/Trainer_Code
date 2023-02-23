@@ -91,10 +91,10 @@ Select Count(FirstName) as NumCustomer, Country from Customer group by country o
 Select Count(FirstName) as NumCustomer, Country from Customer where FirstName like '%a%' group by country having Count(FirstName) > 1 order by NumCustomer desc;
 
 -- Write a query that counts how many sales a certain track has made, group them by track name and order them also by their track name
+-- write a query that gives you total revenue for each track
+
 select top 5 Name, count(Name) as NumSales, sum(InvoiceLine.UnitPrice) as Sum from Track right join InvoiceLine ON Track.TrackId = InvoiceLine.TrackId
 group by Name
 order by Sum desc;
 
 SELECT count(Quantity) as Sales, [Name] from InvoiceLine, Track where InvoiceLine.TrackId = Track.TrackId group by Track.Name order by Track.Name
-
--- write a query that gives you total revenue for each track

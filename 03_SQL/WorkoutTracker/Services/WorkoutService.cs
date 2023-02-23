@@ -38,7 +38,7 @@ public class WorkoutService
         {
             _repo.CreateNewSession(sessionToCreate);
         }
-        catch (SqlException)
+        catch (Exception)
         {
             throw;
         }

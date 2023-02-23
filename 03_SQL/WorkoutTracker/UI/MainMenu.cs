@@ -109,7 +109,7 @@ public class MainMenu
             _service.CreateNewSession(session);
             Console.WriteLine(session);
         }
-        catch (SqlException)
+        catch (Exception)
         {
             Console.WriteLine("Something went wrong with db, please try again");
         }
