@@ -182,61 +182,112 @@ public class DBRepository : IRepository
     //     }
     // }
 
-    public WorkoutSession CreateNewSession(WorkoutSession sessionToCreate)
-    {
-        // Even when only persisting data, with data adapters, we need to "fill" it first, because that's how it gets the structure of the table
-        try {
+    // public WorkoutSession CreateNewSession(WorkoutSession sessionToCreate)
+    // {
+    //     // Even when only persisting data, with data adapters, we need to "fill" it first, because that's how it gets the structure of the table
+    //     try {
 
-            DataSet workoutSet = new();
-            SqlDataAdapter workoutAdapter = new SqlDataAdapter("Select * FROM WorkoutSessions where Id = -1", Secrets.getConnectionString());
-            workoutAdapter.Fill(workoutSet, "workoutTable");
-            DataTable? wTable = workoutSet.Tables["workoutTable"];
+    //         DataSet workoutSet = new();
+    //         SqlDataAdapter workoutAdapter = new SqlDataAdapter("Select * FROM WorkoutSessions where Id = -1", Secrets.getConnectionString());
+    //         workoutAdapter.Fill(workoutSet, "workoutTable");
+    //         DataTable? wTable = workoutSet.Tables["workoutTable"];
 
-            if(wTable != null) {
-                DataRow newRow = wTable.NewRow();
+    //         if(wTable != null) {
+    //             DataRow newRow = wTable.NewRow();
 
-                newRow["WorkoutName"] = sessionToCreate.WorkoutName;
-                newRow["WorkoutDate"] = sessionToCreate.WorkoutDate;
+    //             newRow["WorkoutName"] = sessionToCreate.WorkoutName;
+    //             newRow["WorkoutDate"] = sessionToCreate.WorkoutDate;
 
-                wTable.Rows.Add(newRow);
+    //             wTable.Rows.Add(newRow);
 
-                using SqlCommand cmd = new SqlCommand("INSERT INTO WorkoutSessions(WorkoutName, WorkoutDate) OUTPUT INSERTED.Id Values (@wName, @wDate)", new SqlConnection(Secrets.getConnectionString()));
-                cmd.Parameters.Add("@wName", SqlDbType.VarChar, 50, "WorkoutName");
-                cmd.Parameters.Add("@wDate", SqlDbType.DateTime, 4, "WorkoutDate");
-                workoutAdapter.InsertCommand = cmd;
+    //             using SqlCommand cmd = new SqlCommand("INSERT INTO WorkoutSessions(WorkoutName, WorkoutDate) OUTPUT INSERTED.Id Values (@wName, @wDate)", new SqlConnection(Secrets.getConnectionString()));
+    //             cmd.Parameters.Add("@wName", SqlDbType.VarChar, 50, "WorkoutName");
+    //             cmd.Parameters.Add("@wDate", SqlDbType.DateTime, 4, "WorkoutDate");
+    //             workoutAdapter.InsertCommand = cmd;
 
-                workoutAdapter.Update(wTable);
+    //             workoutAdapter.Update(wTable);
 
-                sessionToCreate.Id = (int) newRow["Id"];
-            }
+    //             sessionToCreate.Id = (int) newRow["Id"];
+    //         }
 
-            SqlDataAdapter exerciseAdapter = new SqlDataAdapter("Select * From Exercises Where Id = -1", Secrets.getConnectionString());
-            exerciseAdapter.Fill(workoutSet, "exerciseTable");
+    //         SqlDataAdapter exerciseAdapter = new SqlDataAdapter("Select * From Exercises Where Id = -1", Secrets.getConnectionString());
+    //         exerciseAdapter.Fill(workoutSet, "exerciseTable");
 
-            DataTable? eTable = workoutSet.Tables["exerciseTable"];
+    //         DataTable? eTable = workoutSet.Tables["exerciseTable"];
 
-            if(eTable != null) {
-                foreach(Exercise e in sessionToCreate.WorkoutExercises)
-                {
-                    DataRow newRow = eTable.NewRow();
+    //         if(eTable != null) {
+    //             foreach(Exercise e in sessionToCreate.WorkoutExercises)
+    //             {
+    //                 DataRow newRow = eTable.NewRow();
 
-                    newRow["ExerciseName"] = e.Name;
-                    newRow["ExerciseNote"] = e.Notes;
-                    newRow["WorkoutId"] = sessionToCreate.Id;
-                    eTable.Rows.Add(newRow);
+    //                 newRow["ExerciseName"] = e.Name;
+    //                 newRow["ExerciseNote"] = e.Notes;
+    //                 newRow["WorkoutId"] = sessionToCreate.Id;
+    //                 eTable.Rows.Add(newRow);
+    //             }
+    //             SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(exerciseAdapter);
+    //             SqlCommand cmd = cmdBuilder.GetInsertCommand();
+    //             exerciseAdapter.InsertCommand = cmd;
+
+    //             exerciseAdapter.Update(eTable);
+    //         }
+    //         return sessionToCreate;
+    //     }
+    //     catch(SqlException ex)
+    //     {
+    //         Log.Warning($"SQL Exception while creating new workout record: {ex}");
+    //         throw;
+    //     }
+    // }
+
+    public WorkoutSession CreateNewSession(WorkoutSession sessionToCreate) {
+        /*
+        BEGIN TRAN CreateWorkout
+        BEGIN TRY
+            INSERT INTO WorkoutSessions (WorkoutName, WorkoutDate) Values ('2/22 quads', getdate());
+            DECLARE @wId INT
+            SET @wId = SCOPE_IDENTITY()
+            INSERT INTO Exercises(ExerciseName, ExerciseNote) Values ('squats', '350lb'), ('deadlift', '500lb');
+            COMMIT TRANSACTION
+        END TRY
+
+        BEGIN CATCH
+            ROLLBACK TRANSACTION
+        END CATCH
+        */
+        using SqlConnection conn = new SqlConnection(Secrets.getConnectionString());
+        conn.Open();
+        using SqlTransaction tran = conn.BeginTransaction();
+
+        try
+        {
+            using SqlCommand command = new SqlCommand("INSERT INTO WorkoutSessions(WorkoutName, WorkoutDate) OUTPUT INSERTED.Id VALUES (@wName, @wDate)", conn);
+            command.Transaction = tran;
+            command.Parameters.AddWithValue("@wName", sessionToCreate.WorkoutName);
+            command.Parameters.AddWithValue("@wDate", sessionToCreate.WorkoutDate);
+
+            int wId = (int) command.ExecuteScalar();
+            sessionToCreate.Id = wId;
+            command.CommandText = "INSERT INTO Exercises(ExerciseName, ExerciseNote, WorkoutId) Values (@eName, @eNote, @wId)";
+            for(int i = 0; i < sessionToCreate.WorkoutExercises.Count; i++) {
+                if(i == 0) {
+                    command.Parameters.AddWithValue("@eName", sessionToCreate.WorkoutExercises[i].Name);
+                    command.Parameters.AddWithValue("@eNote", sessionToCreate.WorkoutExercises[i].Notes);
+                    command.Parameters.AddWithValue("@wId", wId);
                 }
-                SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(exerciseAdapter);
-                SqlCommand cmd = cmdBuilder.GetInsertCommand();
-                exerciseAdapter.InsertCommand = cmd;
-
-                exerciseAdapter.Update(eTable);
+                else {
+                    command.Parameters["@eName"] = new SqlParameter("@eName", sessionToCreate.WorkoutExercises[i].Name);
+                    command.Parameters["@eNote"] = new SqlParameter("@eNote", sessionToCreate.WorkoutExercises[i].Notes);
+                }
+                command.ExecuteNonQuery();
             }
+            tran.Commit();
             return sessionToCreate;
         }
-        catch(SqlException ex)
-        {
-            Log.Warning($"SQL Exception while creating new workout record: {ex}");
+        catch (SqlException) {
+            tran.Rollback();
             throw;
         }
+
     }
 }
