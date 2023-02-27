@@ -1,7 +1,7 @@
 # HTTP & API
 ### Learning Objectives
 - Understand different components of http request response lifecycle
-- Understand what API is and the benefits of SOA
+- Understand what API is and the benefits of them
 
 ## HTTP (HyperText Transfer Protocol)
 A protocol to communicate data over the web
