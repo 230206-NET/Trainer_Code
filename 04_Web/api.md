@@ -8,14 +8,16 @@ A protocol to communicate data over the web
 ### HTTP Request Response Lifecycle
 1. Client Initiates HTTP Request
 2. Server Receives the HTTP request
-3. Server Responds with a HTTP Response
+3. Server Responds with an HTTP Response, along with the resource the client asked for
 
 #### Client
-- machine that is initiating the request
+- machine that is initiating the http request
 #### Server
 - Machine that is processing/responding to the request
 
 * Do note that these are not fixed roles, they change depending on the context. A server can be a client if it is sending an http request to another server.
+#### Web Resource
+Web Resource is any resource on the web. This can mean image, audio files, text files, json data, html page... etc. Anything and everything that we send over the web that is tied to a URL is considered resource
 #### URL
     - Uniform Resource Locator: aka, a way to locate a resource on the web using uniform syntax
     - [MDN Doc on URL](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL)
@@ -49,7 +51,6 @@ A protocol to communicate data over the web
     - etc.
 
 - Optionally, it can also have request body (common with POST/PUT requests)
-
 #### HTTP Response
 - Response Code
     - Predetermined codes to communicate a particular message
