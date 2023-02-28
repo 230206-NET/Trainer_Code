@@ -6,6 +6,11 @@ using Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
+{
+    options.SerializerOptions.PropertyNamingPolicy = null;
+});
+
 // AddSingleton => The same instance is shared across the entire app over the lifetime of the application
 // AddScoped => The instance is created every new request
 // AddTransient => The instance is created every single time it is required as a dependency 
