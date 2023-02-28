@@ -15,11 +15,11 @@ A protocol to communicate data over the web
 #### Server
 - Machine that is processing/responding to the request
 
-* Do note that these are not fixed roles, they change depending on the context. A server can be a client if it is sending an http request to another server.
+* Do note that these are not fixed roles, they change depending on the context. A machine that handles http requests (aka server) is a client if it is sending an http request to another server.
 #### Web Resource
 Web Resource is any resource on the web. This can mean image, audio files, text files, json data, html page... etc. Anything and everything that we send over the web that is tied to a URL is considered resource
 #### URL
-    - Uniform Resource Locator: aka, a way to locate a resource on the web using uniform syntax
+    - Uniform Resource Locator: aka, a consistent way to locate a resource on the web following a particular syntax
     - [MDN Doc on URL](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL)
     - Scheme (which protocol are you using?)
     - Domain name (where is this server on the web?)
