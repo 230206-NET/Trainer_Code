@@ -36,6 +36,10 @@ Disconnected Architecture
 
 public class DBRepository : IRepository
 {
+    private readonly string _connectionString;
+    public DBRepository(string connectionString) {
+        _connectionString = connectionString;
+    }
 
     /// <summary>
     /// Retrieves all workout sessions
@@ -45,7 +49,7 @@ public class DBRepository : IRepository
     {
         List<WorkoutSession> allWorkouts = new();
         // Equivalent to opening Azure Data Studio and filling out the new connection form
-        using SqlConnection connection = new SqlConnection(Secrets.getConnectionString()); 
+        using SqlConnection connection = new SqlConnection(_connectionString); 
 
         // Click the "Connect" button
         connection.Open();
@@ -116,7 +120,7 @@ public class DBRepository : IRepository
 
         DataSet exercisesSet = new DataSet();
         List<Exercise> exerciseList = new();
-        SqlDataAdapter exerciseAdapter = new SqlDataAdapter("Select * From Exercises WHERE WorkoutId = @id", Secrets.getConnectionString());
+        SqlDataAdapter exerciseAdapter = new SqlDataAdapter("Select * From Exercises WHERE WorkoutId = @id", _connectionString);
         exerciseAdapter.SelectCommand.Parameters.AddWithValue("@id", id);
 
         exerciseAdapter.Fill(exercisesSet, "exerciseTable");
@@ -255,7 +259,7 @@ public class DBRepository : IRepository
             ROLLBACK TRANSACTION
         END CATCH
         */
-        using SqlConnection conn = new SqlConnection(Secrets.getConnectionString());
+        using SqlConnection conn = new SqlConnection(_connectionString);
         conn.Open();
         using SqlTransaction tran = conn.BeginTransaction();
 
