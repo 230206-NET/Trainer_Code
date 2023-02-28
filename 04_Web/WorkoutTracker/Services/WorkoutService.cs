@@ -34,14 +34,15 @@ public class WorkoutService
         return filtered;
     }
 
-    public void CreateNewSession(WorkoutSession sessionToCreate) {
+    public WorkoutSession CreateNewSession(WorkoutSession sessionToCreate) {
         try
         {
-            _repo.CreateNewSession(sessionToCreate);
+            return _repo.CreateNewSession(sessionToCreate);
         }
         catch (Exception)
         {
             throw;
         }
     }
+
 }

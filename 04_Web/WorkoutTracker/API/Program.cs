@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using DataAccess;
 using Services;
 using Models;
@@ -22,14 +23,23 @@ app.UseSwaggerUI();
 app.MapGet("/", () => "Hello World!");
 
 // Query parameters don't get defined in the route it self, but you look for it in the argument/parameter of the lambda exp that is handling this request
-app.MapGet("/greet", ([FromQuery]string? name, [FromQuery] string? region) => $"Hello {name ?? "humans"} from {region ?? "a mysterious location"}!");
+app.MapGet("/greet", (string? name, string? region) => {
+        if(string.IsNullOrWhiteSpace(name)) {
+            return Results.BadRequest("Name must not be empty or white spaces");
+        }
+        else
+        {
+            return Results.Ok($"Hello {name ?? "humans"} from {region ?? "a mysterious location"}!");
+        }
+    }
+);
 
 // Route params
 app.MapGet("/greet/{name}", (string name) => $"Hello {name} from route param!");
 
 
 // ToDo: Fix why searching by workout doesn't work
-app.MapGet("/workouts", ([FromQuery] string? search, WorkoutService service) => {
+app.MapGet("/workouts", ([FromQuery] string? search, [FromServices] WorkoutService service) => {
     if(search != null) {
         return service.SearchWorkoutsByExercise(search);
     }
@@ -37,7 +47,7 @@ app.MapGet("/workouts", ([FromQuery] string? search, WorkoutService service) => 
 });
 
 app.MapPost("/workouts", ([FromBody] WorkoutSession session, WorkoutService service) => {
-    service.CreateNewSession(session);
+    return Results.Created("/workouts", service.CreateNewSession(session));
 });
 
 app.Run();
