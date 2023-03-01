@@ -16,6 +16,7 @@ A Design guideline to designing API's
 - Cacheable
     - Certain high demand server resources can be cached for quicker access
     - clients also cache commonly used resources in its side
+    - Resources should be noted whether they are cacheable or not
 
 - Uniform Interface
     - Your API should have some kind of standardized way of accessing your resource
