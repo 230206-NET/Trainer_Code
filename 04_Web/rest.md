@@ -20,11 +20,10 @@ A Design guideline to designing API's
 
 - Uniform Interface
     - Your API should have some kind of standardized way of accessing your resource
-    - HATEOAS (Hypermedia As The Engine Of Application State) (optional)
-        - a curated menu
-        - This is an optional feature of RESTful API where the server guides the user on what they can do based on the last request
-        - In the server response, the server includes information about other endpoints the client can use based off of their current state
-        - StarWars API has a good implementation of Hateoas
+        - Identification of resources – The interface must uniquely identify each resource involved in the interaction between the client and the server.
+        - Manipulation of resources through representations – The resources should have uniform representations in the server response. API consumers should use these representations to modify the resources state in the server.
+        - Self-descriptive messages – Each resource representation should carry enough information to describe how to process the message. It should also provide information of the additional actions that the client can perform on the resource.
+        - Hypermedia as the engine of application state – The client should have only the initial URI of the application. The client application should dynamically drive all other resources and interactions with the use of hyperlinks.
 
 - Layered System
     - Each layer in your server should only know the layer beyond
