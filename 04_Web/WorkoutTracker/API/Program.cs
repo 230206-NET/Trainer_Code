@@ -26,6 +26,8 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+app.UseHttpsRedirection();
+
 app.MapGet("/", () => "Hello World!");
 
 // Query parameters don't get defined in the route it self, but you look for it in the argument/parameter of the lambda exp that is handling this request
@@ -44,7 +46,6 @@ app.MapGet("/greet", (string? name, string? region) => {
 app.MapGet("/greet/{name}", (string name) => $"Hello {name} from route param!");
 
 
-// ToDo: Fix why searching by workout doesn't work
 app.MapGet("/workouts", ([FromQuery] string? search, [FromServices] WorkoutService service) => {
     if(search != null) {
         return service.SearchWorkoutsByExercise(search);
@@ -55,5 +56,7 @@ app.MapGet("/workouts", ([FromQuery] string? search, [FromServices] WorkoutServi
 app.MapPost("/workouts", ([FromBody] WorkoutSession session, WorkoutService service) => {
     return Results.Created("/workouts", service.CreateNewSession(session));
 });
+
+
 
 app.Run();

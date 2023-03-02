@@ -19,7 +19,6 @@ public class WorkoutService
 
     // An example of business logic that is not UI or data access
     public List<WorkoutSession> SearchWorkoutsByExercise(string searchTerm) {
-        Console.WriteLine("Searching ");
         List<WorkoutSession> allSessions = GetAllWorkouts();
         List<WorkoutSession> filtered = new();
         foreach(WorkoutSession s in allSessions) {
@@ -30,7 +29,6 @@ public class WorkoutService
                 }
             }
         }
-
         return filtered;
     }
 

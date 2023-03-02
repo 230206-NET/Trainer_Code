@@ -12,4 +12,6 @@ public interface IRepository
     /// Persists a new workout session to storage
     /// </summary>
     WorkoutSession CreateNewSession(WorkoutSession sessionToCreate);
+
+    List<Exercise> GetExercisesByWorkoutId(int id);
 }
