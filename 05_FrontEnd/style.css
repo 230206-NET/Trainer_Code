@@ -16,6 +16,16 @@ li {
     background-color: bisque;
 }
 
+nav > ul > li {
+    list-style: none;
+    display: inline-flex;
+    background-color: inherit;
+}
+nav > ul > li > a {
+    text-decoration: none;
+    color: black;
+}
+
 /* Selecting elements via its id */
 #first-div {
     background-color: lavender;
