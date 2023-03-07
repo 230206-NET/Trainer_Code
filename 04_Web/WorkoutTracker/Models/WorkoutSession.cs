@@ -1,4 +1,5 @@
 ﻿using Models.CustomException;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Serilog;
 namespace Models;
@@ -16,26 +17,29 @@ public class WorkoutSession
 
     public int Id { get; set; }
     public DateTime WorkoutDate { get; set; } = DateTime.Now;
-    private string _workoutName = DateTime.Now.ToString();
-    public string WorkoutName { 
-        get
-        {
-            return _workoutName;
-        }
-        set 
-        {
-            if(value.Length >= 100)
-            {
-                // The name is longer than 100 characters
-                // Throw some exception
-                Log.Warning("Models: assigning name to new workout session: name length too long");
-                throw new ArgumentLengthException("Name must be less than 100 characters");
-            }
-            if(!string.IsNullOrWhiteSpace(value))
-            {
-                _workoutName = value;
-            }
-        }
+    // private string _workoutName = DateTime.Now.ToString();
+    
+    [Required]
+    [MaxLength(100)]
+    public string WorkoutName { get; set; 
+        // get
+        // {
+        //     return _workoutName;
+        // }
+        // set 
+        // {
+        //     if(value.Length >= 100)
+        //     {
+        //         // The name is longer than 100 characters
+        //         // Throw some exception
+        //         Log.Warning("Models: assigning name to new workout session: name length too long");
+        //         throw new ArgumentLengthException("Name must be less than 100 characters");
+        //     }
+        //     if(!string.IsNullOrWhiteSpace(value))
+        //     {
+        //         _workoutName = value;
+        //     }
+        // }
     }
     public List<Exercise> WorkoutExercises { get; set; }
 
