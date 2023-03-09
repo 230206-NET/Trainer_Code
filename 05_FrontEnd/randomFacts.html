@@ -10,10 +10,14 @@
             list-style: none;
             display: inline-flex;
             background-color: inherit;
+            border: solid 1px black;
         }
         nav > ul > li > a {
             text-decoration: none;
             color: black;
+        }
+        .image-container {
+            max-width: 200pt;
         }
     </style>
 </head>
@@ -25,28 +29,22 @@
                     <a href="aboutus.html">About Us</a>
                 </li>
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="events.html">Events</a>
                 </li>
                 <li>
-                    <a href="randomFacts.html">Random Facts</a>
+                    <a href="#">Random Facts</a>
                 </li>
             </ul>
         </nav>
     </header>
-
-    <input type="text" name="" id="" onchange="console.log('something changed')">
-    <div onmouseenter="console.log('mouse enter event')" onmouseleave='console.log("dont leave me :(")'>Hover over me!</div>
-    
-    <div onclick="console.log('btn grandparent');">
-        <div onclick="console.log('btn parent');">
-            <button onclick="btnClickHandler(event)">Click Me</button>
-            button's parent
-        </div>
-        button's grand parent
+    <h1>
+        Get a random fact
+    </h1>
+    <div id="random-fact-container">
     </div>
-
-    <div id="dom-manipulation-practice">
+    <div id="cat-pic-container">
+        <button onclick="getCatPic()">Get me a cat pic</button>
     </div>
-    <script src="index.js"></script>
+    <script src="fetch.js"></script>
 </body>
 </html>

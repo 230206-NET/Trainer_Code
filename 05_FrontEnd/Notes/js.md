@@ -53,6 +53,7 @@ JS primarily interacts with HTML/DOM through events. Browsers keeps track of man
 
 ### Event Propagation
 ### Bubbling and Capturing
+Capturing -> Target -> Bubblign
 Once the event reaches the target element, it "bubbles" up to the window. As it bubbles up, it can trigger all of its parents related event handler. When this behavior is not desired, we call event.stopPropagation() function.
 
 ## Making HTTP Calls
