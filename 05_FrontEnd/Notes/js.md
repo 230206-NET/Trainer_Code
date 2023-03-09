@@ -57,7 +57,7 @@ Capturing -> Target -> Bubblign
 Once the event reaches the target element, it "bubbles" up to the window. As it bubbles up, it can trigger all of its parents related event handler. When this behavior is not desired, we call event.stopPropagation() function.
 
 ## Making HTTP Calls
-- XML Http Request
+- XML Http Request (Part of AJAX)
 - Fetch API
 
 ## JS Object vs JSON (JavaScript Object Notation)

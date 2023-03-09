@@ -22,3 +22,20 @@ clickBtn.onclick = (e) => {
 
 domPracticeDiv.appendChild(clickBtn);
 domPracticeDiv.appendChild(counterSpan);
+
+function callBackFn(result) {
+    console.log(result);
+    console.log('im handling the result of this')
+}
+
+function asyncFunction(cbFn) {
+    console.log('I do some async operation, i need to be waited for the actual result to come back');
+    let result = {};
+    cbFn(result)
+}
+
+asyncFunction(callBackFn)
+
+asyncFunction(function() {
+    console.log('handling result')
+})

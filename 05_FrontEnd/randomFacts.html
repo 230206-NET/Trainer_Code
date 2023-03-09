@@ -11,10 +11,15 @@
             display: inline-flex;
             background-color: inherit;
             border: solid 1px black;
+            border-radius: 5%;
         }
-        nav > ul > li > a {
+        .nav-link {
+            padding: 10pt;
             text-decoration: none;
             color: black;
+        }
+        .nav-link:hover {
+            background-color: gainsboro;
         }
         .image-container {
             max-width: 200pt;
@@ -26,13 +31,16 @@
         <nav>
             <ul>
                 <li>
-                    <a href="aboutus.html">About Us</a>
+                    <a class="nav-link" href="index.html">Home</a>
                 </li>
                 <li>
-                    <a href="events.html">Events</a>
+                    <a class="nav-link" href="aboutus.html">About Us</a>
                 </li>
                 <li>
-                    <a href="#">Random Facts</a>
+                    <a class="nav-link" href="events.html">Events</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#">Random Facts</a>
                 </li>
             </ul>
         </nav>

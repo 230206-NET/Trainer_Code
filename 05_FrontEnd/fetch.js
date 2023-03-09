@@ -13,39 +13,39 @@ fetch('https://uselessfacts.jsph.pl/api/v2/facts/random').then((res) => res.json
 });
 // In Fetch API, they use Promise to handle asynchronous operations, this is akin to Task in C#
 // let catPicId = ''
-function getCatPic() {
-    fetch('https://api.thecatapi.com/v1/images/search').then((res) => res.json()).then(data => {
-        const catpicDiv = document.querySelector('#cat-pic-container');
-    
-        const imgTag = document.getElementById('cat-image');
+async function getCatPic() {
+    const response = await fetch('https://api.thecatapi.com/v1/images/search');
+    const data = await response.json();
+    const catpicDiv = document.querySelector('#cat-pic-container');
 
-        if(!imgTag) {
-            const catImg = document.createElement('img');
-            catImg.id = 'cat-image'
-            catImg.className = 'image-container'
-            catImg.src = data[0].url;
-            catpicDiv.appendChild(catImg);
-            
-            const upButton = document.createElement('button');
-            upButton.id = 'up-vote'
-            upButton.innerText = 'Up Vote'
-            upButton.onclick = function(e) {
-                return sendVotes(data[0].id, 1);
-            }
-            catpicDiv.appendChild(upButton)
+    const imgTag = document.getElementById('cat-image');
 
-            const downButton = document.createElement('button');
-            downButton.innerText = 'Down Vote'
-            downButton.id = 'down-vote'
-            downButton.onclick = (e) => sendVotes(data[0].id, -1);
-            catpicDiv.appendChild(downButton)
+    if(!imgTag) {
+        const catImg = document.createElement('img');
+        catImg.id = 'cat-image'
+        catImg.className = 'image-container'
+        catImg.src = data[0].url;
+        catpicDiv.appendChild(catImg);
+        
+        const upButton = document.createElement('button');
+        upButton.id = 'up-vote'
+        upButton.innerText = 'Up Vote'
+        upButton.onclick = function(e) {
+            return sendVotes(data[0].id, 1);
         }
-        else {
-            imgTag.src = data[0].url;
-            document.getElementById('up-vote').onclick = (e) => sendVotes(data[0].id, 1)
-            document.getElementById('down-vote').onclick = (e) => sendVotes(data[0].id, -1)
-        }
-    })
+        catpicDiv.appendChild(upButton)
+
+        const downButton = document.createElement('button');
+        downButton.innerText = 'Down Vote'
+        downButton.id = 'down-vote'
+        downButton.onclick = (e) => sendVotes(data[0].id, -1);
+        catpicDiv.appendChild(downButton)
+    }
+    else {
+        imgTag.src = data[0].url;
+        document.getElementById('up-vote').onclick = (e) => sendVotes(data[0].id, 1)
+        document.getElementById('down-vote').onclick = (e) => sendVotes(data[0].id, -1)
+    }
 }
 
 function sendVotes(imgId, voteValue) {
@@ -57,12 +57,12 @@ function sendVotes(imgId, voteValue) {
         value : voteValue
     }
     console.log(reqBody);
-    // fetch('https://api.thecatapi.com/v1/votes', {
-    //     method: "POST",
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //         'x-api-key': apiKey
-    //     },
-    //     body: JSON.stringify(reqBody)
-    // }).then((res) => res.json()).then(data => console.log(data))
+    fetch('https://api.thecatapi.com/v1/votes', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            'x-api-key': apiKey
+        },
+        body: JSON.stringify(reqBody)
+    }).then((res) => res.json()).then(data => console.log(data))
 }
