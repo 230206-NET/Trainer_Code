@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Html Forms</title>
+</head>
+<body>
+    <form onsubmit="handleSubmit(event)" id="custom-form">
+        <label for="name">Name: </label>
+        <input type="text" maxlength="100" name="name" id="name">
+
+        <label for="age">Age: </label>
+        <input type="number" min="0" max="200" name="age" id="age">
+
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email">
+
+        <label for="date">Date</label>
+        <input type="date" name="date" id="date">
+        <!-- <input type="button" value="Submit" onclick="handleSubmit(event)"> -->
+        <input type="submit" value="Submit Form">
+    </form>
+    <script>
+        function handleSubmit(event) {
+            // console.log(document.getElementById('custom-form')['name'].value);
+            event.preventDefault();
+            const obj = {
+                name: event.target['name'].value,
+                age: event.target['age'].value,
+                email: event.target['email'].value
+            }
+            console.log(obj);
+        }
+    </script>
+</body>
+</html>

@@ -1,16 +1,16 @@
 // Inheritance in JS is through prototypal inheritance.
 // MDN Doc: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain
-// const obj = {
-//     a: 1,
-//     b: 2,
-//     foo() {
-//         console.log('bar')
-//     },
-//     __proto__ : {
-//         b: 3,
-//         c: 5
-//     }
-// };
+const obj = {
+    a: 1,
+    b: 2,
+    foo() {
+        console.log('bar')
+    },
+    __proto__ : {
+        b: 3,
+        c: 5
+    }
+};
 
 // console.log(obj.a, obj.b ,obj.c, obj.d);
 
@@ -51,7 +51,7 @@ class Animal {
     // Fields
     species = 'animal';
     // Private field
-    #privateInfo = 'iam private';
+    #privateInfo = 'i am private';
     // Can't overload constructor
     constructor(species = 'animal') {
         this.species = species;
