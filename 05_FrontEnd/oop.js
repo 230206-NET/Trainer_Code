@@ -1,4 +1,5 @@
 // Inheritance in JS is through prototypal inheritance.
+// MDN Doc: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain
 // const obj = {
 //     a: 1,
 //     b: 2,
@@ -31,6 +32,7 @@
 
 // // Now, the more familiar OOP Syntax
 // // ES6 introduced Class syntax in js that is more familiar with oop programmers. However, it doesn't introduce any new feature, it is simply a reworking of prototypal inheritance.
+// MDN Doc: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
 
 // class Animal {
 //     species;
