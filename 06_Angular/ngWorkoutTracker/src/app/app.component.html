@@ -1,9 +1,6 @@
-<app-navbar></app-navbar>
+<app-navbar (showCreate)="toggleCreate($event)" [create]="showCreateComponent"></app-navbar>
 
 <main class="container">
-    <!-- <h1>App Works!</h1>
-    
-    <app-counterComp></app-counterComp> -->
-    <app-create-workout></app-create-workout>
+    <app-create-workout *ngIf="showCreateComponent" [@inOutAnimation]></app-create-workout>
     <app-view-workouts></app-view-workouts>
 </main>

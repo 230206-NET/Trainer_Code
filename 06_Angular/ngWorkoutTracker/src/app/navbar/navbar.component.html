@@ -1,12 +1,10 @@
 <header>
     <nav>
         <ul>
-            <li><strong>ngWorkoutTracker</strong></li>
+            <li class="brand">ngWorkoutTracker</li>
         </ul>
         <ul>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#" role="button">Button</a></li>
+            <li><a href="#" (click)="toggleCreate()" role="button">{{create === true ? "Hide" : "Create"}}</a></li>
         </ul>
     </nav>
 </header>

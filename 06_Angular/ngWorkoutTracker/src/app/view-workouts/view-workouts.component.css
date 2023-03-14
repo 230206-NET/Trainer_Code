@@ -1,0 +1,7 @@
+tr:hover {
+    background-color: lightyellow;
+}
+
+tr:hover td {
+    opacity: 1;
+}

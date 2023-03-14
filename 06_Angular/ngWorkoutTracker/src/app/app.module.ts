@@ -7,6 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CounterComponent } from './counter/counter.component';
 import { ViewWorkoutsComponent } from './view-workouts/view-workouts.component';
 import { CreateWorkoutComponent } from './create-workout/create-workout.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

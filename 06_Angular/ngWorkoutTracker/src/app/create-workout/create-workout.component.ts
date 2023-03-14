@@ -22,15 +22,15 @@ export class CreateWorkoutComponent {
   }
   
   addExercise() : void {
-    const exerciseForm = this.fb.group({
+    const exerciseForm  = this.fb.group({
       name: ['', Validators.required],
       notes: ['']
     })
-    return (this.exercises as FormArray).push(exerciseForm)
+    return this.exercises.push(exerciseForm)
   }
 
   deleteExercise(exIndex: number) : void {
-    (this.exercises as FormArray).removeAt(exIndex);
+    this.exercises.removeAt(exIndex);
   }
 
   processForm(e: Event) : void {
