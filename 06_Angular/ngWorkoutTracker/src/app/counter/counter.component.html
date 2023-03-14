@@ -2,13 +2,14 @@
 {{count}}
 
 <!-- event binding -->
-<button (click)="increment()">Increment</button>
-
-<div *ngFor="let num of arr">
-    <span>Id: </span>{{num}}
-    <div>
-        Maybe put some user data
-        or some item information here
+<button class="btn-fitcontent" (click)="increment()">increment</button>
+<div class="grid">
+    <div *ngFor="let num of arr">
+        <span>Id: </span>{{num}}
+        <div>
+            Maybe put some user data
+            or some item information here
+        </div>
     </div>
 </div>
 
@@ -16,4 +17,4 @@
     Show field is True
 </div>
 <!-- In order to have access to event object, pass it with $event -->
-<button (click)="toggleShow($event)">Toggle Show</button>
+<button role="button" (click)="toggleShow($event)">Toggle Show</button>

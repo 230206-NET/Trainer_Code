@@ -1,0 +1,19 @@
+<h2>All Workouts</h2>
+<table *ngIf="workouts.length > 0">
+    <thead>
+        <th>Id</th>
+        <th>Date</th>
+        <th>Name</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let w of workouts">
+            <td>{{w.id}}</td>
+            <td>{{w.workoutDate}}</td>
+            <td>{{w.workoutName}}</td>
+        </tr>
+    </tbody>
+    
+</table>
+<p *ngIf="workouts.length === 0">
+    No workouts to display... :(
+</p>

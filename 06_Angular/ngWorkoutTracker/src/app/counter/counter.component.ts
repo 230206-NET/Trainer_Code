@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class CounterComponent {
   count : number = 0;
 
-  increment() {
+  increment() : void {
     this.count = this.count + 1;
   }
 
@@ -16,7 +16,7 @@ export class CounterComponent {
 
   show : Boolean = true;
 
-  toggleShow(e: Event) {
+  toggleShow(e: Event) : void {
     console.log(e);
     this.show = !this.show;
   }
