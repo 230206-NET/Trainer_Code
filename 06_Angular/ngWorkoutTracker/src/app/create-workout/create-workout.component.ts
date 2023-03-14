@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray} from '@angular/forms';
 import { WorkoutApiService } from '../workout-api.service';
 
 @Component({
@@ -9,31 +9,38 @@ import { WorkoutApiService } from '../workout-api.service';
 })
 export class CreateWorkoutComponent {
 
-  constructor(private api: WorkoutApiService) { }
+  constructor(private api: WorkoutApiService, private fb: FormBuilder) { }
 
-  workoutForm : FormGroup = new FormGroup({
+  form : FormGroup = this.fb.group({
     workoutName : new FormControl('', [Validators.required, Validators.maxLength(256)]),
     workoutDate : new FormControl(new Date(), [Validators.required]),
-    workoutExerciseName: new FormControl(''),
-    workoutExerciseNotes: new FormControl('')
+    workoutExercises : this.fb.array([])
   })
 
-  processForm(e: Event) {
-    e.preventDefault();
-    console.log(this.workoutForm);
-    if(this.workoutForm.valid) {
-      const workoutToCreate = {
-        workoutName : this.workoutForm.value.workoutName,
-        workoutDate : this.workoutForm.value.workoutDate,
-        workoutExercises: [
-          {
-            name: this.workoutForm.value.workoutExerciseName,
-            notes: this.workoutForm.value.workoutExerciseNotes
-          }
-        ]
-      };
+  get exercises() : FormArray<FormGroup>{
+    return this.form.controls['workoutExercises'] as FormArray<FormGroup>;
+  }
+  
+  addExercise() : void {
+    const exerciseForm = this.fb.group({
+      name: ['', Validators.required],
+      notes: ['']
+    })
+    return (this.exercises as FormArray).push(exerciseForm)
+  }
 
-      this.api.createNewWorkout(workoutToCreate).subscribe(data => console.log(data));
+  deleteExercise(exIndex: number) : void {
+    (this.exercises as FormArray).removeAt(exIndex);
+  }
+
+  processForm(e: Event) : void {
+    e.preventDefault();
+    console.log(this.form);
+    this.form.markAllAsTouched();
+    if(this.form.valid) {
+      console.log('form is valid!')
+
+      this.api.createNewWorkout(this.form.value).subscribe(data => console.log(data));
     }
   }
 }

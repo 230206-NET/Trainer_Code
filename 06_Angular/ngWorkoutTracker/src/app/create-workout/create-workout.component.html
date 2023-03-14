@@ -1,19 +1,30 @@
 <h1>Create New Workout</h1>
-<form (submit)="processForm($event)" [formGroup]="workoutForm">
+<form (submit)="processForm($event)" [formGroup]="form">
     <label for="w-name">Workout Name<span class="required">*</span></label>
     <input type="text" name="w-name" id="w-name" formControlName="workoutName">
-    <div *ngIf="workoutForm.controls['workoutName'].invalid && workoutForm.controls['workoutName'].touched">
-        <span class="required" *ngIf="workoutForm.controls['workoutName'].errors?.['required']">Workout Name is required</span>
-        <span class="required" *ngIf="workoutForm.controls['workoutName'].errors?.['maxlength']">Workout Name needs to be 256 characters or less</span>
+    <div *ngIf="form.controls['workoutName'].invalid && form.controls['workoutName'].touched">
+        <span class="required" *ngIf="form.controls['workoutName'].errors?.['required']">Workout Name is required</span>
+        <span class="required" *ngIf="form.controls['workoutName'].errors?.['maxlength']">Workout Name needs to be 256 characters or less</span>
     </div>
     <label for="w-date">Workout Date</label>
     <input type="datetime-local" name="w-date" id="w-date" formControlName="workoutDate">
 
-    <label for="ex-name">Exercise Name: </label>
-    <input type="text" id="ex-name" formControlName="workoutExerciseName">
-
-    <label for="ex-notes">Exercise Notes:</label>
-    <input type="text" id="ex-notes" formControlName="workoutExerciseNotes">
+    <ng-container formArrayName="workoutExercises">
+        <h5 class="flex">
+            Exercises
+            <input type="button" class="form-btn" value="+" (click)="addExercise()">
+        </h5>
+        
+        <ng-container *ngFor="let ex of exercises.controls; let i = index">
+            <div class="form-group" [formGroup]="ex">
+                <label for="{{i}}-name">Name</label>
+                <input class="form-control" type="text" formControlName="name" id="{{i}}-name">
+                <label for="{{i}}-notes">Notes</label>
+                <input class="form-control" type="text" formControlName="notes" id="{{i}}-notes">
+                <button class="fit-content" class="form-btn" (click)="deleteExercise(i)">-</button>
+            </div>
+        </ng-container>
+    </ng-container>
 
 
     <input type="submit" role="button" value="Create">

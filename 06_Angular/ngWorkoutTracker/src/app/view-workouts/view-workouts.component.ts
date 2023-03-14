@@ -14,7 +14,7 @@ export class ViewWorkoutsComponent implements OnInit, OnDestroy, OnChanges{
       // Useful for any initial set up such as fetching data
       this.api.getAllWorkouts().subscribe(data => {
         console.log(data);
-        this.workouts = data;
+        this.workouts = data.sort((a, b) => new Date(a.workoutDate).getTime() - new Date(b.workoutDate).getTime());
       });
   }
   ngOnDestroy(): void {
