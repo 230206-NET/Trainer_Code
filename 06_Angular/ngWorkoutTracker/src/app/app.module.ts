@@ -9,6 +9,7 @@ import { ViewWorkoutsComponent } from './view-workouts/view-workouts.component';
 import { CreateWorkoutComponent } from './create-workout/create-workout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { WorkoutDetailComponent } from './workout-detail/workout-detail.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     CounterComponent,
     ViewWorkoutsComponent,
-    CreateWorkoutComponent
+    CreateWorkoutComponent,
+    WorkoutDetailComponent
   ],
   imports: [
     BrowserModule,

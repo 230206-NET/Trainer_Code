@@ -1,6 +1,7 @@
-<app-navbar (showCreate)="toggleCreate($event)" [create]="showCreateComponent"></app-navbar>
-
+<header>
+    <app-navbar (showCreate)="toggleCreate($event)"></app-navbar>
+</header>
 <main class="container">
     <app-create-workout *ngIf="showCreateComponent" [@inOutAnimation]></app-create-workout>
-    <app-view-workouts></app-view-workouts>
+    <router-outlet></router-outlet>
 </main>

@@ -1,18 +1,15 @@
 <h2>All Workouts</h2>
 <table *ngIf="workouts.length > 0">
     <thead>
-        <th>Id</th>
         <th>Date</th>
         <th>Name</th>
     </thead>
     <tbody>
-        <tr class="row" *ngFor="let w of workouts">
-            <td>{{w.id}}</td>
+        <tr (click)="viewDetails(w.id)" class="row" *ngFor="let w of workouts">
             <td>{{w.workoutDate}}</td>
             <td>{{w.workoutName}}</td>
         </tr>
     </tbody>
-    
 </table>
 <p *ngIf="workouts.length === 0">
     No workouts to display... :(

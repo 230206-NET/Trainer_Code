@@ -35,10 +35,8 @@ export class CreateWorkoutComponent {
 
   processForm(e: Event) : void {
     e.preventDefault();
-    console.log(this.form);
     this.form.markAllAsTouched();
     if(this.form.valid) {
-      console.log('form is valid!')
 
       this.api.createNewWorkout(this.form.value).subscribe(data => console.log(data));
     }

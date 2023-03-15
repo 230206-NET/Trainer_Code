@@ -1,0 +1,21 @@
+<h2>Workout Detail</h2>
+
+<div *ngIf="workoutSession">
+    <h3 id="name">
+        Name: {{workoutSession.workoutName}}
+    </h3>
+    <p id="date">Date: {{workoutSession.workoutDate | date: 'short'}}</p>
+    <hr>
+    <h4 for="exercises">Exercise: </h4>
+    <div>
+        <ng-container *ngIf="workoutSession.workoutExercises.length > 0; else nothingToShow">
+            <div *ngFor="let exercise of workoutSession.workoutExercises">
+                <h5>{{exercise.name}}</h5>
+                <p>{{exercise.notes}}</p>
+            </div>
+        </ng-container>
+        <ng-template #nothingToShow>
+            No Exercises associated to this workout
+        </ng-template>
+    </div>
+</div>

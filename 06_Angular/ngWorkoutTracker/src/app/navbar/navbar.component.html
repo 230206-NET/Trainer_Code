@@ -4,7 +4,7 @@
             <li class="brand">ngWorkoutTracker</li>
         </ul>
         <ul>
-            <li><a href="#" (click)="toggleCreate()" role="button">{{create === true ? "Hide" : "Create"}}</a></li>
+            <li><button class="btn-fitcontent" (click)="toggleCreate()" [ngClass]="createView ? 'danger' : ''">{{createView === true ? "Cancel" : "Create"}}</button></li>
         </ul>
     </nav>
 </header>
