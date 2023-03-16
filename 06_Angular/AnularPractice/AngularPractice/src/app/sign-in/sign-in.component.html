@@ -1,0 +1,16 @@
+<p>sign-in works!
+    <span style="color:green">I am a random span. You can call me peter, Peter span</span>
+    <button role="button" (click)="displayimage($event)">display image</button>
+    <button (click)="getImage()">Are you feeling foxy? display image from url</button>
+    {{url}}
+    Image: {{image}}
+    <img [src]="image" alt="">
+
+    <input type="text" [formControl]="textInput">
+    <button (click)="getInput()">get Input</button>
+    
+    <img *ngIf="display" [src] = "image" alt = "showImage">
+    <button (click) = "display = !display" >Toggle Image</button>
+
+    {{text}}
+</p>

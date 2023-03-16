@@ -83,7 +83,8 @@ Two different categories of directive
 - Attribute Directive : changes attributes of your html tags
     - ex. *ngClass, *ngStyle, *ngModel
 
-    
+- Components
+
 ## Model Binding
 - One Way Binding
     - Event Binding
@@ -94,7 +95,7 @@ Two different categories of directive
     - Attribute Binding
         - TS to HTML
         - syntax: `[attr-name]`
-        - ex. `[class]=variableNameInComponentTS`
+        - ex. `[class]="variableNameInComponentTS"`
     - String Interpolation
         - TS to HTML
         - syntax: `{{varName}}`
