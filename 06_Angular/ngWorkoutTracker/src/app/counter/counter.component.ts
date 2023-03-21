@@ -16,8 +16,7 @@ export class CounterComponent {
 
   show : Boolean = true;
 
-  toggleShow(e: Event) : void {
-    console.log(e);
+  toggleShow() : void {
     this.show = !this.show;
   }
 }

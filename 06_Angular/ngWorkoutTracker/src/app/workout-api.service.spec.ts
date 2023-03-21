@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { WorkoutApiService } from './workout-api.service';
-import { Workout } from './models/workout'
 
 describe('WorkoutApiService', () => {
   let service: WorkoutApiService;

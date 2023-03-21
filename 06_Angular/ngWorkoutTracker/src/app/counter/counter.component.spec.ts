@@ -20,4 +20,43 @@ describe('CounterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have default values', () => {
+    expect(component.count).toBe(0);
+    expect(component.arr.length).toBe(5);
+    expect(component.show).toBeTrue();
+  })
+
+  it('should increment by one', () => {
+    component.increment();
+
+    expect(component.count).toBe(1);
+  })
+
+  it('should toggle show property', () => {
+    component.toggleShow();
+
+    expect(component.show).toBeFalse();
+  })
+
+  it('should click on increment btn to increment', () => {
+    const htmlElem = fixture.nativeElement as HTMLElement;
+
+    const btn = htmlElem.querySelector('#increment-btn') as HTMLButtonElement;
+
+    btn.click();
+
+    expect(component.count).toBe(1);
+  })
+
+  it('should not display show div when show prop is false', () => {
+    const htmlElem = fixture.nativeElement as HTMLElement;
+    expect(htmlElem.querySelector('#show')).toBeTruthy();
+
+    component.show = false;
+    
+    fixture.detectChanges();
+
+    expect(htmlElem.querySelector('#show')).toBeFalsy();
+  })
 });
