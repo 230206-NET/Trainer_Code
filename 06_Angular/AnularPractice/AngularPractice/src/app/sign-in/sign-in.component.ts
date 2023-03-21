@@ -13,7 +13,7 @@ import { ImageService } from '../app-image-services';
 })
 export class SignInComponent implements OnInit {
   
-  constructor(private _http: HttpClient, private formBuilder : FormBuilder, private service : ImageService){}
+  constructor(private _http: HttpClient, private formBuilder : FormBuilder, private service: ImageService){}
   ngOnInit() {
       this.getImage().then((data) => {
         this.image = data;
