@@ -1,4 +1,5 @@
 # DevOps
+https://www.atlassian.com/devops
 
 ## Before DevOps
 
@@ -14,7 +15,7 @@
         - Stops at deployment to staging environment and will wait for manual (human) approval for production deploy
     - Continuous Deployment
         - Goes all the way to production deployment automatically
-
+https://www.atlassian.com/continuous-delivery/principles/continuous-integration-vs-delivery-vs-deployment
 ## Tools to create CI/CD Pipeline
 - Jenkins
 - Github action ("Runners")
