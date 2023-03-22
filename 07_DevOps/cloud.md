@@ -6,7 +6,7 @@
 - Google Cloud Provider (Google)
 
 ## Pros
-- you don't have to purchase the physical machines yourself - no need to worry about future needs
+- you don't have to purchase the physical machines yourself - no need to worry about future needs right now
 - maintenance and security of hardware is on cloud providers
 - upgrade whenever you want to, downgrade whenever you need to
 - Infrastructure/hardware maintained by specialists
@@ -28,3 +28,8 @@ guaranteed uptime
 ## Scaling
 - Vertical Scaling
 - Horizontal Scaling
+
+## Resources
+- https://www.microsoft.com/en-us/trainingdays/azure
+- https://learn.microsoft.com/en-us/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/
+- https://learn.microsoft.com/en-us/certifications/exams/az-900/
