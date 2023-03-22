@@ -5,7 +5,6 @@
 ## Cultural Shift
 
 ## CI/CD
-
 - CI: Continuous Integration
     - Let's continuously integrate newly written code to our main/dev branch w/o all manual review
     - Automate build, test, code quality check 
@@ -20,7 +19,7 @@
 - Jenkins
 - Github action ("Runners")
 - AWS CodeBuild/CodePipeline
-- Azure DevOps
+- Azure DevOps ("agent")
 
 ## Steps
 1. Create instruction sheet on how to build and deploy your application
