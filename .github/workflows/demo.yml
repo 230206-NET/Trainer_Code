@@ -23,7 +23,8 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
-
+      - name: Display Secret Date
+        run: echo ${{ secrets.SUPERSECRETECODE }}
       - name: Multiline script
         run: |
           echo Hello, World!
