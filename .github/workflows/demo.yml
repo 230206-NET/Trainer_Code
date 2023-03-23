@@ -35,7 +35,7 @@ jobs:
       - name: Ensure it builds
         run: |
           cd 04_Web
-          cd WebAPI
+          cd WorkoutTracker/WebAPI
           dotnet build
       - name: where are we now?
         run: pwd
