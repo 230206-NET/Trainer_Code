@@ -24,6 +24,6 @@ jobs:
 
       - name: Multiline script
         run: |
-          echo Hello, World!,
-          echo I'm github actions runner,
-          ls.
+          echo Hello, World! \
+          echo I'm github actions runner \
+          ls
