@@ -47,7 +47,8 @@ jobs:
           cd 04_Web/WorkoutTracker/Tests
           dotnet test
   another-job:
-    needs: build
+    # Depends on successful build job to process this job. Without this, these two jobs will run in parallel
+    # needs: build
     runs-on: ubuntu-latest
     
     steps:
