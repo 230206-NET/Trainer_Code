@@ -28,3 +28,7 @@ jobs:
           echo I\'m github actions runner
           ls
           pwd
+      - name: Checkout Github Repository
+        uses: actions/checkout@v3.4.0
+      - name: Take a look at what we got
+        run: ls
