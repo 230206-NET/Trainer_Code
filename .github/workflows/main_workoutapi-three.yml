@@ -9,6 +9,9 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  WORKING_DIR: 04_Web/WorkoutTracker/WebAPI
+
 jobs:
   build:
     runs-on: windows-latest
@@ -23,10 +26,10 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build ${{ env.WORKING_DIR }} --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish ${{ env.WORKING_DIR }} -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
