@@ -16,11 +16,12 @@ https://www.atlassian.com/devops
     - Continuous Deployment
         - Goes all the way to production deployment automatically
 https://www.atlassian.com/continuous-delivery/principles/continuous-integration-vs-delivery-vs-deployment
+
 ## Tools to create CI/CD Pipeline
 - Jenkins
-- Github action ("Runners")
+- Github action
 - AWS CodeBuild/CodePipeline
-- Azure DevOps ("agent")
+- Azure DevOps
 
 ## Steps
 1. Create instruction sheet on how to build and deploy your application
