@@ -32,3 +32,10 @@ jobs:
         uses: actions/checkout@v3.4.0
       - name: Take a look at what we got
         run: ls
+      - name: Ensure it builds
+        run: |
+          cd 04_Web
+          cd WebAPI
+          dotnet build
+      - name: where are we now?
+        run: pwd
