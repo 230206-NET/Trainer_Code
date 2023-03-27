@@ -87,6 +87,6 @@ jobs:
         WORKING_DIRECTORY: 04_Web\WorkoutTracker\WebAPI
        shell: powershell
        run: |
-        .\.sonar\scanner\dotnet-sonarscanner begin /k:"230206-NET_Trainer_Code" /o:"230206-NET" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
+        .\.sonar\scanner\dotnet-sonarscanner begin /k:"230206-NET_Trainer_Code" /o:"230206-net" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
         dotnet build ${{env.WORKING_DIRECTORY}}
         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
