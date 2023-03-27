@@ -46,12 +46,12 @@ jobs:
         run: |
           cd 04_Web/WorkoutTracker/Tests
           dotnet test
-  another-job:
+  sonar-analysis:
     # Depends on successful build job to process this job. Without this, these two jobs will run in parallel
-    # needs: build
-    runs-on: ubuntu-latest
+    needs: build
+    runs-on: windows-latest
     
     steps:
       - name : Say Hi
-        run: echo "Hi, my name is another job"
+        run: ls && pwd
     
