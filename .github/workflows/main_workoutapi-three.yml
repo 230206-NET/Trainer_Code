@@ -4,9 +4,9 @@
 name: ASP.NET CI/CD Pipeline
 
 on:
-  push:
-    branches:
-      - main
+#   push:
+#     branches:
+#       - main
   workflow_dispatch:
 
 env:
