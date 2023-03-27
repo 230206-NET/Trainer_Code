@@ -50,7 +50,7 @@ public class WorkoutSession
         sb.Append($"Workout Name: {this.WorkoutName}\nDate: {this.WorkoutDate}");
         sb.Append("\nExercises: ");
         foreach(Exercise e in WorkoutExercises) {
-            sb.Append("\n");
+            sb.Append('\n');
             sb.Append(e.ToString());
         }
 

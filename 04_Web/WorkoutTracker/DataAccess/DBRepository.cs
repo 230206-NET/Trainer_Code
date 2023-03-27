@@ -120,8 +120,8 @@ public class DBRepository : IRepository
 
         DataSet exercisesSet = new DataSet();
         List<Exercise> exerciseList = new();
-        SqlDataAdapter exerciseAdapter = new SqlDataAdapter("Select * From Exercises WHERE WorkoutId = @id", _connectionString);
-        exerciseAdapter.SelectCommand.Parameters.AddWithValue("@id", id);
+        SqlDataAdapter exerciseAdapter = new SqlDataAdapter($"Select * From Exercises WHERE WorkoutId = {id}", _connectionString);
+        // exerciseAdapter.SelectCommand.Parameters.AddWithValue("@id", id);
 
         exerciseAdapter.Fill(exercisesSet, "exerciseTable");
 
