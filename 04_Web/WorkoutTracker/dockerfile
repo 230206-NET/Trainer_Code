@@ -1,0 +1,18 @@
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS BUILD
+
+WORKDIR /app
+
+COPY WebAPI ./WebAPI
+COPY DataAccess ./DataAccess
+COPY Models ./Models
+COPY Services ./Services
+
+RUN dotnet publish WebAPI -o dist
+
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS RUN
+
+WORKDIR /app
+
+COPY --from=BUILD app/dist .
+
+CMD [ "dotnet", "WebAPI.dll" ]

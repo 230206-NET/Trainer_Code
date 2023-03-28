@@ -4,6 +4,7 @@ Docker is a containerization platform that allows developers to package their ap
 ## Docker Demo
 1. 01_CSharp/HotOrCold/Dockerfile
 2. 04_Web/WorkoutTracker/Dockerfile
+3. [Deploy Container Image to Azure App Services using Github actions](https://github.com/220926NET/trainer-code/blob/main/.github/workflows/docker.yml)
 
 ## If you are given an empty machine (not even an OS) with internet connection and were to run your API there...
 1. Install an OS
@@ -62,6 +63,7 @@ Is a way to provide *uniform environment* to run our app regardless of whichever
     - `-d` "detached" runs the container in the background
     - `-p host:container` to map container port to host machine
     - `docker run -d -p 8080:8080 aschil/snake`
+    - `-i` interactive for your interactive console applications
 - To see all your local images:
     - `docker image ls`
 - to remove your local image
