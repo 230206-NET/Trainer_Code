@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        nav > ul > li {
+            list-style: none;
+            display: inline-flex;
+            background-color: inherit;
+        }
+        nav > ul > li > a {
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="aboutus.html">About Us</a>
+                </li>
+                <li>
+                    <a href="randomFacts.html">Random Facts</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <input type="text" name="" id="" onchange="console.log('something changed')">
+    <div onmouseenter="console.log('mouse enter event')" onmouseleave='console.log("dont leave me :(")'>Hover over me!</div>
+    
+    <div onclick="console.log('btn grandparent');">
+        <div onclick="console.log('btn parent');">
+            <button onclick="btnClickHandler(event)">Click Me</button>
+            button's parent
+        </div>
+        button's grand parent
+    </div>
+
+    <div id="dom-manipulation-practice">
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        nav > ul > li {
+            list-style: none;
+            display: inline-flex;
+            background-color: inherit;
+            border: solid 1px black;
+            border-radius: 5%;
+        }
+        .nav-link {
+            padding: 10pt;
+            text-decoration: none;
+            color: black;
+        }
+        .nav-link:hover {
+            background-color: gainsboro;
+        }
+        .image-container {
+            max-width: 200pt;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="aboutus.html">About Us</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="events.html">Events</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#">Random Facts</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <h1>
+        Get a random fact
+    </h1>
+    <div id="random-fact-container">
+    </div>
+    <div id="cat-pic-container">
+        <button onclick="getCatPic()">Get me a cat pic</button>
+    </div>
+    <script type="module" src="fetch.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+/* choose all elements that have heading class (.) */
+/* Class Selector */
+.heading {
+    color: blueviolet;
+}
+/* The following style will override the one above */
+.heading {
+    color: red;
+}
+.heading-one {
+    font-size: 3em;
+}
+
+/* Tag Selector */
+li {
+    background-color: bisque;
+}
+
+nav > ul > li {
+    list-style: none;
+    display: inline-flex;
+    background-color: inherit;
+}
+nav > ul > li > a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Selecting elements via its id */
+#first-div {
+    background-color: lavender;
+}
+
+.btn {
+    /* These are rules */
+    padding: 10pt;
+    border: solid black 2pt;
+    background-color: skyblue;
+    color: white;
+    text-decoration: none;
+}
+
+/* This is pseudo class selector */
+.btn:hover {
+    background-color: aquamarine;
+}
+
+.leftpad-med {
+    padding-left: 10%
+}
